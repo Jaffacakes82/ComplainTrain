@@ -1,35 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MentorMe.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MentorMe.Controllers
+namespace MentorMe.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IConfigService configService;
+
+        public HomeController(IConfigService configService)
+        {
+            this.configService = configService;
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public IActionResult Index(string foo)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
+            this.configService.Get(foo);
+            return this.RedirectToAction("Index");
         }
     }
 }
