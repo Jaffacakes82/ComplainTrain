@@ -44,14 +44,10 @@ namespace MentorMe
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
 
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
