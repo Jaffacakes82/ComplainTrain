@@ -1,28 +1,23 @@
-using MentorMe.Core.Interfaces;
+using MentorMe.Core.Settings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MentorMe.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfigService configService;
+        private readonly MessageSettings messageOptions;
 
-        public HomeController(IConfigService configService)
+        public HomeController(IOptions<MessageSettings> messageOptions)
         {
-            this.configService = configService;
+            this.messageOptions = messageOptions.Value;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
+            this.ViewData["Message"] = this.messageOptions.MessageOfTheDay;
             return this.View();
-        }
-
-        [HttpPost]
-        public IActionResult Index(string foo)
-        {
-            this.configService.Get(foo);
-            return this.RedirectToAction("Index");
         }
     }
 }

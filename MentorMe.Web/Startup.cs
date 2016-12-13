@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MentorMe.Core.Interfaces;
-using MentorMe.Core.Services;
+using MentorMe.Core.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +31,10 @@ namespace MentorMe
             // Add framework services.
             services.AddMvc();
 
+            services.AddOptions();
+
             // Application services
-            services.AddTransient<IConfigService, ConfigService>();
+            services.Configure<MessageSettings>(Configuration.GetSection("MessageSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
