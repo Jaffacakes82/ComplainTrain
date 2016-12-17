@@ -1,6 +1,6 @@
 using System;
 
-namespace MentorMe.Core.Settings
+namespace TrainComplain.Core.Settings
 {
     public class MessageSettings
     {

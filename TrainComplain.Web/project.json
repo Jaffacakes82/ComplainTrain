@@ -4,7 +4,7 @@
       "version": "1.0.1",
       "type": "platform"
     },
-    "MentorMe.Core": {
+    "TrainComplain.Core": {
         "target":"project"
     },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -69,6 +69,6 @@
   },
 
   "tooling": {
-    "defaultNamespace": "MentorMe.Web"
+    "defaultNamespace": "TrainComplain.Web"
   }
 }

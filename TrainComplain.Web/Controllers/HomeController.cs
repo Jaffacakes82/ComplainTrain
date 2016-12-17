@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using MentorMe.Core.Settings;
+using TrainComplain.Core.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace MentorMe.Web.Controllers
+namespace TrainComplain.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,11 +1,11 @@
-﻿using MentorMe.Core.Settings;
-using MentorMe.Web.Controllers;
+﻿using TrainComplain.Core.Settings;
+using TrainComplain.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
-namespace MentorMe.Web.Tests.Controllers
+namespace TrainComplain.Web.Tests.Controllers
 {
     public class HomeControllerTests
     {
