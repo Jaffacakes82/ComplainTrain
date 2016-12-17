@@ -1,15 +1,15 @@
-version: 1.0.{build}
-clone_folder: C:\projects\traincomplain\
-init:
-- cmd: 
-environment:
-  BUILD_DIR: C:\projects\traincomplain
-install:
-- cmd: npm install -g bower
 -
   branches:
     only:
       - develop
+  version: 1.0.{build}
+  clone_folder: C:\projects\traincomplain\
+  init:
+  - cmd: 
+  environment:
+    BUILD_DIR: C:\projects\traincomplain
+  install:
+  - cmd: npm install -g bower
   build_script:
   - cmd: >-
       cd %BUILD_DIR%\TrainComplain.Core
@@ -51,6 +51,14 @@ install:
   branches:
     only:
       - master
+  version: 1.0.{build}
+  clone_folder: C:\projects\traincomplain\
+  init:
+  - cmd: 
+  environment:
+    BUILD_DIR: C:\projects\traincomplain
+  install:
+  - cmd: npm install -g bower
   build_script:
   - cmd: >-
       cd %BUILD_DIR%\TrainComplain.Core
