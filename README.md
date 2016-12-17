@@ -7,4 +7,4 @@ This is where I play around with ASP.NET Core, AppVeyor, Azure and Visual Studio
 
 ## This application consists of:
 
-*   Pretty much nothing.
+*   Pretty much nothing..
