@@ -24,8 +24,6 @@
       dotnet restore
 
       dotnet build
-
-      dotnet publish -o %BUILD_DIR%\publish
   test_script:
   - cmd: >-
       cd %BUILD_DIR%\TrainComplain.Web.Tests
@@ -35,22 +33,6 @@
       dotnet build
 
       dotnet test
-  artifacts:
-  - path: /publish
-    name: traincomplain-develop
-  deploy:
-  - provider: WebDeploy
-    server: https://traincomplain-develop.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain-develop
-    website: traincomplain-develop
-    username: $traincomplain-develop
-    password:
-      secure: eVdK24CN09uDRc2JrnAu5MRAkrfsHmK41b4S/ACkQiSxCZgTxvJkT1JDzJ3I/xEMjIMmjO7BXYNS9RDNtlk8aQ==
-    artifact: traincomplain-develop
-    aspnet_core_force_restart: true
-    aspnet_core: true
-    remove_files: false
-    on:
-      branch: develop
 -
   branches:
     only:
@@ -81,15 +63,15 @@
       dotnet publish -o %BUILD_DIR%\publish
   artifacts:
   - path: /publish
-    name: traincomplain-production
+    name: traincomplain
   deploy:
   - provider: WebDeploy
-    server: https://traincomplain-production.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain-production
-    website: traincomplain-production
-    username: $traincomplain-production
+    server: https://traincomplain.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain
+    website: traincomplain
+    username: $traincomplain
     password:
-      secure: eYHMYGNj1yHDcs9CUdLAPL12OBD1UNpXKoOqL2eFlJB0XDied1uXsk58ZHDd0vg45ACfE+1Ks2PRU4dqlYYD0w==
-    artifact: traincomplain-production
+      secure: xr8IVoFelVwcJTmWrGqSgThnI4Bq4PuU3enKNObLstwXpl5RbnLVkIHwA/u90V23xMt3Bvt8AvwClt8CFvQvdQ==
+    artifact: traincomplain
     aspnet_core: true
     remove_files: false
     aspnet_core_force_restart: true
