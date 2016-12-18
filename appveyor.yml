@@ -42,7 +42,6 @@
     password:
       secure: eVdK24CN09uDRc2JrnAu5MRAkrfsHmK41b4S/ACkQiSxCZgTxvJkT1JDzJ3I/xEMjIMmjO7BXYNS9RDNtlk8aQ==
     artifact: traincomplain-develop
-    app_offline: true
     aspnet_core_force_restart: true
     aspnet_core: true
     remove_files: false
@@ -85,7 +84,6 @@
     artifact: traincomplain-production
     aspnet_core: true
     remove_files: false
-    app_offline: true
     aspnet_core_force_restart: true
     on:
       branch: master
