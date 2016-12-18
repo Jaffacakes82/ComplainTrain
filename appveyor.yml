@@ -43,7 +43,7 @@
       secure: eVdK24CN09uDRc2JrnAu5MRAkrfsHmK41b4S/ACkQiSxCZgTxvJkT1JDzJ3I/xEMjIMmjO7BXYNS9RDNtlk8aQ==
     artifact: traincomplain-develop
     aspnet_core: true
-    remove_files: true
+    remove_files: false
     app_offline: true
     aspnet_core_force_restart: true
     on:
@@ -84,7 +84,7 @@
       secure: eYHMYGNj1yHDcs9CUdLAPL12OBD1UNpXKoOqL2eFlJB0XDied1uXsk58ZHDd0vg45ACfE+1Ks2PRU4dqlYYD0w==
     artifact: traincomplain-production
     aspnet_core: true
-    remove_files: true
+    remove_files: false
     app_offline: true
     aspnet_core_force_restart: true
     on:
