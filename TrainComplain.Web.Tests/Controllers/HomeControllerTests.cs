@@ -9,22 +9,11 @@ namespace TrainComplain.Web.Tests.Controllers
 {
     public class HomeControllerTests
     {
-        private readonly Mock<IOptions<MessageSettings>> messageSettings;
-
-        public HomeControllerTests()
-        {
-            this.messageSettings = new Mock<IOptions<MessageSettings>>();
-        }
-
         [Fact]
         public void HomeController_GET_Index_ReturnsIndexView() 
         {
-            // Arrange
-            MessageSettings testSettings = new MessageSettings { MessageOfTheDay = "Test" };
-            this.messageSettings.SetupGet(msg => msg.Value).Returns(testSettings);
-
             // Act
-            HomeController homeController = new HomeController(this.messageSettings.Object);
+            HomeController homeController = new HomeController();
             ViewResult result = (ViewResult)homeController.Index();
             
             // Assert
