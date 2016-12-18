@@ -1,0 +1,97 @@
+-
+  branches:
+    only:
+      - develop
+  version: 1.0.{build}
+  clone_folder: C:\projects\traincomplain\
+  init:
+  - cmd: 
+  environment:
+    BUILD_DIR: C:\projects\traincomplain
+    ASPNETCORE_ENVIRONMENT: Development
+  install:
+  - cmd: npm install -g bower
+  build_script:
+  - cmd: >-
+      cd %BUILD_DIR%\TrainComplain.Core
+
+      dotnet restore
+
+      dotnet build
+
+      cd %BUILD_DIR%\TrainComplain.Web
+
+      dotnet restore
+
+      dotnet build
+
+      dotnet publish -o %BUILD_DIR%\publish
+  test_script:
+  - cmd: >-
+      cd %BUILD_DIR%\TrainComplain.Web.Tests
+
+      dotnet restore
+
+      dotnet build
+
+      dotnet test
+  artifacts:
+  - path: /publish
+    name: traincomplain-develop
+  deploy:
+  - provider: WebDeploy
+    server: https://traincomplain-develop.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain-develop
+    website: traincomplain-develop
+    username: $traincomplain-develop
+    password:
+      secure: eVdK24CN09uDRc2JrnAu5MRAkrfsHmK41b4S/ACkQiSxCZgTxvJkT1JDzJ3I/xEMjIMmjO7BXYNS9RDNtlk8aQ==
+    artifact: traincomplain-develop
+    aspnet_core_force_restart: true
+    aspnet_core: true
+    remove_files: false
+    on:
+      branch: develop
+-
+  branches:
+    only:
+      - master
+  version: 1.0.{build}
+  clone_folder: C:\projects\traincomplain\
+  init:
+  - cmd: 
+  environment:
+    BUILD_DIR: C:\projects\traincomplain
+    ASPNETCORE_ENVIRONMENT: Production
+  install:
+  - cmd: npm install -g bower
+  build_script:
+  - cmd: >-
+      cd %BUILD_DIR%\TrainComplain.Core
+
+      dotnet restore
+
+      dotnet build
+
+      cd %BUILD_DIR%\TrainComplain.Web
+
+      dotnet restore
+
+      dotnet build
+
+      dotnet publish -o %BUILD_DIR%\publish
+  artifacts:
+  - path: /publish
+    name: traincomplain-production
+  deploy:
+  - provider: WebDeploy
+    server: https://traincomplain-production.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain-production
+    website: traincomplain-production
+    username: $traincomplain-production
+    password:
+      secure: eYHMYGNj1yHDcs9CUdLAPL12OBD1UNpXKoOqL2eFlJB0XDied1uXsk58ZHDd0vg45ACfE+1Ks2PRU4dqlYYD0w==
+    artifact: traincomplain-production
+    aspnet_core: true
+    remove_files: false
+    aspnet_core_force_restart: true
+    on:
+      branch: master

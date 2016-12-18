@@ -32,9 +32,6 @@ namespace TrainComplain.Web
             services.AddMvc();
 
             services.AddOptions();
-
-            // Application services
-            services.Configure<MessageSettings>(Configuration.GetSection("MessageSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
