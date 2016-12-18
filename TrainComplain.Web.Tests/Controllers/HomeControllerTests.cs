@@ -17,12 +17,6 @@ namespace TrainComplain.Web.Tests.Controllers
         }
 
         [Fact]
-        public void FailedTestStub()
-        {
-            Assert.True(false);
-        }
-
-        [Fact]
         public void HomeController_GET_Index_ReturnsIndexView() 
         {
             // Arrange
