@@ -17,9 +17,13 @@
 
       dotnet restore
 
+      dotnet build
+
       cd %BUILD_DIR%\TrainComplain.Web
 
       dotnet restore
+
+      dotnet build
 
       dotnet publish -o %BUILD_DIR%\publish
   test_script:
@@ -66,9 +70,13 @@
 
       dotnet restore
 
+      dotnet build
+
       cd %BUILD_DIR%\TrainComplain.Web
 
       dotnet restore
+
+      dotnet build
 
       dotnet publish -o %BUILD_DIR%\publish
   artifacts:
