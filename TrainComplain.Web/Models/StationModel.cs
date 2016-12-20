@@ -1,18 +1,10 @@
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using TrainComplain.Core.Classes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TrainComplain.Web.Models
 {
     public class StationModel
-    {
-        public StationModel()
-        {
-            this.Stations = new SelectList(StationList.Stations.OrderBy(station => station.Value), "Key", "Value");
-        }
-
-        public virtual SelectList Stations { get; }
-        
+    {   
+        [HiddenInput]
         public virtual string SelectedStation { get; set; }
     }
 }

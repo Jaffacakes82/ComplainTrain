@@ -34,3 +34,15 @@ section#complaint
     color: #3892D2;
     margin-bottom:5%;
 }
+
+section#complaint input
+{
+    color: #3892D2;
+}
+
+section#complaint input#station
+{
+    margin: 0 auto;
+    width:33%;
+}
+
