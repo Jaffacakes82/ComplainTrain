@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
-using TrainComplain.Core.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using TrainComplain.Web.Models;
+using System.Collections.Generic;
+using TrainComplain.Core.Classes;
+using System.Linq;
 
 namespace TrainComplain.Web.Controllers
 {
@@ -13,6 +14,13 @@ namespace TrainComplain.Web.Controllers
         {
             StationModel model = new StationModel();
             return this.View("Index", model);
+        }
+
+        [HttpGet]
+        public JsonResult SearchStations(string term)
+        {
+            IList<KeyValuePair<string, string>> matches = StationList.Stations.Where(station => station.Value.ToLowerInvariant().StartsWith(term.ToLowerInvariant())).ToList();
+            return this.Json(matches);
         }
     }
 }

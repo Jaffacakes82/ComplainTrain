@@ -14,7 +14,11 @@
         <hr>
         <section id="complaint">
             <h3>Where are you travelling from?</h3>
-            <select class="selectpicker" data-live-search="true" asp-for="@Model.SelectedStation" asp-items="@Model.Stations"></select>
+            <br />
+            <input id="station" class="form-control" placeholder="Start typing..."/>
+            <input asp-for="SelectedStation" />
+            <br />
+            <input class="btn btn-default" type="submit" value="Find delayed services">
         <section>
     </div>
 </div>
