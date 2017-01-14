@@ -13,6 +13,8 @@
   - cmd: npm install -g bower
   build_script:
   - cmd: >-
+      echo %BUILD_DIR%
+      
       cd %BUILD_DIR%\ComplainTrain.Core
 
       dotnet restore
