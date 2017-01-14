@@ -1,10 +1,5 @@
 # Welcome to ComplainTrain
-
-This is where I play around with ASP.NET Core, AppVeyor, Azure and Visual Studio Team Services.
-
+##### Made by an angry commuter, for angry commuters.
+ComplainTrain is your one-stop-shop for complaining to the UK's domestic rail franchises.
 ## Build Status
-[![Build status](https://ci.appveyor.com/api/projects/status/yxvnk797r8edvoaa/branch/master?svg=true)](https://ci.appveyor.com/project/Jaffacakes82/mentorme/branch/master)
-
-## This application consists of:
-
-*   Pretty much nothing..
+[![Build status](https://ci.appveyor.com/api/projects/status/r60yi08amdesjs2o?svg=true)](https://ci.appveyor.com/project/Jaffacakes82/traincomplain)
