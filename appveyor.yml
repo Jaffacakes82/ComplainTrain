@@ -66,11 +66,11 @@
     name: ComplainTrain
   deploy:
   - provider: WebDeploy
-    server: https://ComplainTrain.scm.azurewebsites.net:443/msdeploy.axd?site=ComplainTrain
-    website: ComplainTrain
-    username: $ComplainTrain
+    server: https://complaintrain.scm.azurewebsites.net:443/msdeploy.axd?site=complaintrain
+    website: complaintrain
+    username: $complaintrain
     password:
-      secure: xr8IVoFelVwcJTmWrGqSgThnI4Bq4PuU3enKNObLstwXpl5RbnLVkIHwA/u90V23xMt3Bvt8AvwClt8CFvQvdQ==
+      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
     artifact: ComplainTrain
     aspnet_core: true
     remove_files: false
