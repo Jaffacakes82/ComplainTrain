@@ -3,30 +3,30 @@
     only:
       - develop
   version: 1.0.{build}
-  clone_folder: C:\projects\traincomplain\
+  clone_folder: C:\projects\ComplainTrain\
   init:
   - cmd: 
   environment:
-    BUILD_DIR: C:\projects\traincomplain
+    BUILD_DIR: C:\projects\ComplainTrain
     ASPNETCORE_ENVIRONMENT: Development
   install:
   - cmd: npm install -g bower
   build_script:
   - cmd: >-
-      cd %BUILD_DIR%\TrainComplain.Core
+      cd %BUILD_DIR%\ComplainTrain.Core
 
       dotnet restore
 
       dotnet build
 
-      cd %BUILD_DIR%\TrainComplain.Web
+      cd %BUILD_DIR%\ComplainTrain.Web
 
       dotnet restore
 
       dotnet build
   test_script:
   - cmd: >-
-      cd %BUILD_DIR%\TrainComplain.Web.Tests
+      cd %BUILD_DIR%\ComplainTrain.Web.Tests
 
       dotnet restore
 
@@ -38,23 +38,23 @@
     only:
       - master
   version: 1.0.{build}
-  clone_folder: C:\projects\traincomplain\
+  clone_folder: C:\projects\ComplainTrain\
   init:
   - cmd: 
   environment:
-    BUILD_DIR: C:\projects\traincomplain
+    BUILD_DIR: C:\projects\ComplainTrain
     ASPNETCORE_ENVIRONMENT: Production
   install:
   - cmd: npm install -g bower
   build_script:
   - cmd: >-
-      cd %BUILD_DIR%\TrainComplain.Core
+      cd %BUILD_DIR%\ComplainTrain.Core
 
       dotnet restore
 
       dotnet build
 
-      cd %BUILD_DIR%\TrainComplain.Web
+      cd %BUILD_DIR%\ComplainTrain.Web
 
       dotnet restore
 
@@ -63,15 +63,15 @@
       dotnet publish -o %BUILD_DIR%\publish
   artifacts:
   - path: /publish
-    name: traincomplain
+    name: ComplainTrain
   deploy:
   - provider: WebDeploy
-    server: https://traincomplain.scm.azurewebsites.net:443/msdeploy.axd?site=traincomplain
-    website: traincomplain
-    username: $traincomplain
+    server: https://ComplainTrain.scm.azurewebsites.net:443/msdeploy.axd?site=ComplainTrain
+    website: ComplainTrain
+    username: $ComplainTrain
     password:
       secure: xr8IVoFelVwcJTmWrGqSgThnI4Bq4PuU3enKNObLstwXpl5RbnLVkIHwA/u90V23xMt3Bvt8AvwClt8CFvQvdQ==
-    artifact: traincomplain
+    artifact: ComplainTrain
     aspnet_core: true
     remove_files: false
     aspnet_core_force_restart: true
