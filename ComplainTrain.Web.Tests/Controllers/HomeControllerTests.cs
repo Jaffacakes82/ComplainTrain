@@ -9,15 +9,5 @@ namespace ComplainTrain.Web.Tests.Controllers
 {
     public class HomeControllerTests
     {
-        [Fact]
-        public void HomeController_GET_Index_ReturnsIndexView() 
-        {
-            // Act
-            HomeController homeController = new HomeController();
-            ViewResult result = (ViewResult)homeController.Index();
-            
-            // Assert
-            Assert.Equal("Index", result.ViewName);
-        }
     }
 }
