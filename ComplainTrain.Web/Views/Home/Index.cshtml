@@ -1,24 +1,19 @@
-@{
-    ViewData["Title"] = "Train Complain";
-}
-@model ComplainTrain.Web.Models.StationModel
-<div class="row">
+@{ ViewData["Title"] = "Complain Train"; }
+<div class="row" id="logo-banner">
     <div class="col-md-12">
-        <section id="logo-banner">
-            <img title="Thank you freepik for the vector!" id="train-image" class="image-responsive" src="/images/ComplainTrain.png" />
-            <h1>
-                Train Complain
-            </h1>
-            <p>Made by an angry commuter, for angry commuters.</p>
-        </section>
+        <img id="train-image" class="image-responsive" src="/images/ComplainTrain.png"/>
+</div>
+
+<div class="row" id="complaint">
+    <div class="col-md-12">
         <hr>
-        <section id="complaint">
-            <h3>Where are you travelling from?</h3>
-            <br />
-            <input id="station" class="form-control" placeholder="Start typing..."/>
-            <input asp-for="SelectedStation" />
-            <br />
-            <input class="btn btn-default" type="submit" value="Find delayed services">
-        <section>
+        <h3>Where are you travelling from?</h3>
+        <br />
+        <input id="station" class="form-control" placeholder="Start typing..." />
+        <input id="selected-station" type="hidden" />
+        <br />
+        <input id="submit-station" data-url="@Url.Content("/Home/GetDepartures")" class="btn btn-default" type="submit" value="Find delayed services">
     </div>
+</div>
+<div class="row" id="departures">
 </div>

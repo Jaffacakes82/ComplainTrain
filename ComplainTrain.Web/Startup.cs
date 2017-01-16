@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ComplainTrain.Core.Interfaces;
+using ComplainTrain.Core.Services;
 using ComplainTrain.Core.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +30,12 @@ namespace ComplainTrain.Web
             services.AddMvc();
 
             services.AddOptions();
+
+            services.Configure<WebSettings>(Configuration.GetSection("WebSettings"));
+
+            services.AddTransient<INationalRailService, NationalRailService>();
+            services.AddTransient<IHttpService, HttpService>();
+            services.AddTransient<ISerializer, XmlSerializationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

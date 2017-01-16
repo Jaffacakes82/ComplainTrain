@@ -23,7 +23,11 @@ namespace ComplainTrain.Core.Classes.SOAP
         {
             string locationName = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.LocationName;
             string stationCode = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.Crs;
-            string stationNotice = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.NrccMessages.Message;
+            string stationNotice = string.Empty;
+            if (this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.NrccMessages != null)
+            {
+                stationNotice = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.NrccMessages.Message;
+            }
             IList<Departure> departures =
                 this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.TrainServices.Service.Select(
                     service => new Departure
@@ -127,10 +131,10 @@ namespace ComplainTrain.Core.Classes.SOAP
         public string ServiceType { get; set; }
         [XmlElement(ElementName = "length", Namespace = "http://thalesgroup.com/RTTI/2015-11-27/ldb/types")]
         public string Length { get; set; }
-        [XmlElement(ElementName = "cancelReason", Namespace = "http://thalesgroup.com/RTTI/2015-11-27/ldb/types")]
-        public string CancelReason { get; set; }
         [XmlElement(ElementName = "delayReason", Namespace = "http://thalesgroup.com/RTTI/2015-11-27/ldb/types")]
         public string DelayReason { get; set; }
+        [XmlElement(ElementName = "cancelReason", Namespace = "http://thalesgroup.com/RTTI/2015-11-27/ldb/types")]
+        public string CancelReason { get; set; }
         [XmlElement(ElementName = "serviceID", Namespace = "http://thalesgroup.com/RTTI/2015-11-27/ldb/types")]
         public string ServiceID { get; set; }
         [XmlElement(ElementName = "origin", Namespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/types")]

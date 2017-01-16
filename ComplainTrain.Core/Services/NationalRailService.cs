@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ComplainTrain.Core.Classes;
-using System;
 using ComplainTrain.Core.Classes.SOAP;
 using ComplainTrain.Core.Settings;
 using Microsoft.Extensions.Options;
+using ComplainTrain.Core.Interfaces;
+using System;
 
-namespace ComplainTrain.Core.Interfaces
+namespace ComplainTrain.Core.Services
 {
     public sealed class NationalRailService : INationalRailService
     {
@@ -23,7 +24,7 @@ namespace ComplainTrain.Core.Interfaces
         {
             string requestString = string.Format(
                 SOAPWrapper.requestString,
-                this.options.AccessToken,
+                Environment.GetEnvironmentVariable("ACCESS_TOKEN"),
                 pageSize,
                 stationCode,
                 stationFilter,

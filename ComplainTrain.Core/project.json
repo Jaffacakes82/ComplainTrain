@@ -5,7 +5,8 @@
   },
   "dependencies": {
     "System.Xml.XmlSerializer": "4.3.0",
-    "Microsoft.Extensions.Options": "1.1.0"
+    "Microsoft.Extensions.Options": "1.1.0",
+    "System.Security.Cryptography.Algorithms": "4.3.0"
   },
   "frameworks": {
     "netstandard1.6": {

@@ -1,7 +1,5 @@
-/* Element Specific Styling */
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+.navbar {
+    border-radius: 0px;
 }
 
 p
@@ -10,24 +8,24 @@ p
 }
 
 /* Section Specific Styling */
-section#logo-banner
+div#logo-banner
 {
     text-align:center;
     color: #3892D2;
 }
 
-section#logo-banner img#train-image
+div#logo-banner img#train-image
 {
     width:50%;
 }
 
-section#logo-banner h1
+div#logo-banner h1
 {
     margin-top:0px;
     font-family: 'Faster One', cursive;
 }
 
-section#complaint
+div#complaint
 {
     margin-top:5%;
     text-align:center;
@@ -35,14 +33,18 @@ section#complaint
     margin-bottom:5%;
 }
 
-section#complaint input
+div#complaint input
 {
     color: #3892D2;
 }
 
-section#complaint input#station
+div#complaint input#station
 {
     margin: 0 auto;
     width:33%;
 }
 
+div#departures
+{
+    text-align: center;
+}
