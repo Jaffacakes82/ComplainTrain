@@ -48,3 +48,21 @@ div#departures
 {
     text-align: center;
 }
+
+.departure-board {
+    margin:0 auto;
+    width:60%;
+}
+
+.departure-board .form-horizontal {
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.departure-board .form-horizontal .form-group {
+    margin-bottom:0px;
+}
+
+.label-text {
+    padding-top:7px;
+}
