@@ -2,6 +2,10 @@
     border-radius: 0px;
 }
 
+.navbar-brand {
+    padding-top:5px;
+}
+
 p
 {
     font-family: 'Open Sans', sans-serif;
@@ -51,18 +55,19 @@ div#departures
 
 .departure-board {
     margin:0 auto;
-    width:60%;
+    width:80%;
+    font-size:0.9em;
 }
 
-.departure-board .form-horizontal {
-    margin-left:10px;
-    margin-right:10px;
+.departure-board ul {
+    text-align:left;
 }
 
-.departure-board .form-horizontal .form-group {
-    margin-bottom:0px;
+.departure-board ul li.list-group-item {
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
-.label-text {
-    padding-top:7px;
+.departure-board ul li.list-group-item label {
+    min-width:90px;
 }
