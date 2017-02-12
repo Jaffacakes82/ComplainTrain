@@ -29,20 +29,19 @@ div#logo-banner h1
     font-family: 'Faster One', cursive;
 }
 
-div#complaint
+div#hero
 {
     margin-top:5%;
     text-align:center;
     color: #3892D2;
-    margin-bottom:5%;
 }
 
-div#complaint input
+div#hero input
 {
     color: #3892D2;
 }
 
-div#complaint input#station
+div#hero input#station
 {
     margin: 0 auto;
     width:33%;
@@ -53,10 +52,19 @@ div#departures
     text-align: center;
 }
 
+div#departures a {
+    color:#3892D2;
+}
+
+div#departures a#search-again {
+    margin:10px;
+}
+
 .departure-board {
     margin:0 auto;
     width:80%;
     font-size:0.9em;
+    margin-bottom:20px;
 }
 
 .departure-board ul {

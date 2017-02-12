@@ -28,10 +28,16 @@ namespace ComplainTrain.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult About()
+        {
+            return this.View("About");
+        }
+
+        [HttpGet]
         public JsonResult SearchStations(string term)
         {
             IList<KeyValuePair<string, string>> matches = StationList.Stations.Where(
-                station => station.Value.ToLowerInvariant().StartsWith(term.ToLowerInvariant())
+                station => station.Value.ToLowerInvariant().Contains(term.ToLowerInvariant())
                 ).ToList();
             return this.Json(matches);
         }
@@ -41,7 +47,12 @@ namespace ComplainTrain.Web.Controllers
         {
             DepartureListModel model = new DepartureListModel();
             IList<Departure> departures = await this.trainService.GetDepartureBoard("10", selectedStation, "to", "0", "60");
-            model.DepartureModels = departures.Select(departure => new DepartureModel(departure)).ToList();
+
+            if (departures.Count > 0)
+            {
+                model.DepartureModels = departures.Select(departure => new DepartureModel(departure)).ToList();
+            }
+
             return this.Json(model);
         }
     }

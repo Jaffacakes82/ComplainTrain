@@ -21,14 +21,19 @@ namespace ComplainTrain.Core.Classes.SOAP
 
         public IList<Departure> Wash()
         {
+            IList<Departure> departures = new List<Departure>();
             string locationName = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.LocationName;
             string stationCode = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.Crs;
             string stationNotice = string.Empty;
+            
             if (this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.NrccMessages != null)
             {
                 stationNotice = this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.NrccMessages.Message;
             }
-            IList<Departure> departures =
+
+            if (this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.TrainServices != null) 
+            {
+                departures =
                 this.SoapEnvelope.Body.GetDepBoardWithDetailsResponse.GetStationBoardResult.TrainServices.Service.Select(
                     service => new Departure
                     {
@@ -48,6 +53,7 @@ namespace ComplainTrain.Core.Classes.SOAP
                         CancellationReason = service.CancelReason
                     }
                 ).ToList();
+            }
 
             return departures;
         }
