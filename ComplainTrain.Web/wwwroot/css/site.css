@@ -60,22 +60,36 @@ div#departures a#search-again {
     margin:10px;
 }
 
-.departure-board {
+div#departures .departure-board {
     margin:0 auto;
     width:80%;
     font-size:0.9em;
     margin-bottom:20px;
 }
 
-.departure-board ul {
+div#departures .departure-board ul {
     text-align:left;
 }
 
-.departure-board ul li.list-group-item {
+div#departures .departure-board ul li.list-group-item {
     padding-top:5px;
     padding-bottom:5px;
 }
 
-.departure-board ul li.list-group-item label {
+div#departures .departure-board ul li.list-group-item label {
     min-width:90px;
+}
+
+@media (max-width: 320px) {
+    div#hero div#station-search h3 {
+        font-size:20px;
+    }
+    div#hero input#station
+    {
+        margin: 0 auto;
+        width:80%;
+    }
+    div#logo-banner img#train-image {
+        width:100%;
+    }
 }
