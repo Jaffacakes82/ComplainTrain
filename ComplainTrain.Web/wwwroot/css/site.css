@@ -80,7 +80,7 @@ div#departures .departure-board ul li.list-group-item label {
     min-width:90px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 420px) {
     div#hero div#station-search h3 {
         font-size:20px;
     }
