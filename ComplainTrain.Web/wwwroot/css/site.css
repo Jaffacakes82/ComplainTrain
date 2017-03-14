@@ -60,24 +60,20 @@ div#departures a#search-again {
     margin:10px;
 }
 
-div#departures .departure-board {
-    margin:0 auto;
-    width:80%;
-    font-size:0.9em;
-    margin-bottom:20px;
+div#departures table#departures-table.table thead {
+    font-weight:bold;
 }
 
-div#departures .departure-board ul {
-    text-align:left;
+div#departures table#departures-table.table tbody tr.success td:first-child {
+    color:green;
 }
 
-div#departures .departure-board ul li.list-group-item {
-    padding-top:5px;
-    padding-bottom:5px;
+div#departures table#departures-table.table tbody tr.danger td:first-child {
+    color:red;
 }
 
-div#departures .departure-board ul li.list-group-item label {
-    min-width:90px;
+div#departures table#departures-table.table tbody tr.warning td:first-child {
+    color:orange;
 }
 
 @media (max-width: 420px) {
