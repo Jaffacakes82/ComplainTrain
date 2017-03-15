@@ -1,7 +1,7 @@
 @{ ViewData["Title"] = "Complain Train"; }
 <div class="row" id="logo-banner">
     <div class="col-md-12">
-        <img id="train-image" class="image-responsive" src="/images/ComplainTrain.png"/>
+        <img id="train-image" class="image-responsive" src="/images/ComplainTrain v2.png"/>
 </div>
 
 <div class="row" id="hero">
@@ -13,31 +13,42 @@
     <div class="col-md-12" id="station-search">
         <h3>Where are you travelling from?</h3>
         <br />
-        <input id="station" class="form-control" placeholder="Start typing..." />
+        <input id="station" class="form-control" placeholder="Start typing..." data-toggle="popover" title="Required" data-placement="top" data-content="Please search for and select a station."/>
         <input id="selected-station" type="hidden" />
         <br />
         <input id="submit-station" data-url="@Url.Content("/Home/GetDepartures")" class="btn btn-default" type="submit" value="Find delayed services">
     </div>
 </div>
 <div class="row" id="departures">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-2 col-xs-1"></div>
+    <div class="col-md-8 col-xs-10">
     <div class="table-responsive">
         <table id="departures-table" class="table">
             <thead>
                 <tr>
-                    <td></td>
+                    <td class="status-head"></td>
                     <td>Destination</td>
                     <td>Due</td>
                     <td>Expected</td>
                     <td>Platform</td>
-                    <td>Operator</td>
+                    <td class="operator-head">Operator</td>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
-    <div class="col-md-2"></div>
     </div>
+    <div class="col-md-2 col-xs-1"></div>
+</div>
+<div id="complain-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Make a complaint</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+    </div>
+  </div>
 </div>

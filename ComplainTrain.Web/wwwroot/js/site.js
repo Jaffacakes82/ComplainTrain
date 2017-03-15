@@ -1,10 +1,11 @@
 var departureRowHtml = '<tr class="{context}">' +
-    '<td>{status}</td>' +
+    '<td class="status-body">{status}</td>' +
     '<td>{destination}</td>' +
     '<td>{due}</td>' +
     '<td>{expected}</td>' +
     '<td>{platform}</td>' +
-    '<td>{operator}</td>' +
+    '<td class="operator-body">{operator}</td>' +
+    '{reason}'
     '</tr>';
 
 var noTrains = '<div class="col-md-1"></div>' +
@@ -22,6 +23,8 @@ var warningIcon = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>';
 var alertIcon = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
 var allGoodIcon = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>';
 var loadingIcon = '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>';
+
+var reasonInput = '<input type="hidden" value="{reason-string}" />'
 
 $(function () {
     $('#departures').hide();
@@ -46,10 +49,22 @@ $(function () {
     });
 
     $('#submit-station').click(submitStation);
+    $(document).on('click', '#departures-table > tbody > tr.danger, #departures-table > tbody > tr.warning', showComplainModal);
 });
+
+function showComplainModal() {
+    var row = $(this);
+    $('#complain-modal').modal();
+    $('#complain-modal').show();
+}
 
 function submitStation() {
     var selectedStation = $('#selected-station').val();
+
+    if (selectedStation == '') {
+        // Catch this and show a popover
+    }
+
     var url = $(this).data('url');
 
     var stationSearch = $("#station-search");
@@ -77,10 +92,21 @@ function submitStation() {
                     row = departureRowHtml.replace('{context}', 'success').replace('{status}', allGoodIcon);
                 }
                 else if (cancellationReasonPresent || delayReasonPresent) {
-                    row = departureRowHtml.replace('{context}', 'danger').replace('{status}', warningIcon);
+                    if (!cancellationReasonPresent && delayReasonPresent) {
+                        reasonInput = reasonInput.replace('{reason-string}', value.delayReason);
+                    }
+                    else {
+                        reasonInput = reasonInput.replace('{reason-string}', value.cancellationReason);
+                    }
+                    
+                    row = departureRowHtml.replace('{context}', 'danger').replace('{status}', warningIcon).replace('{reason}', reasonInput);
                 }
                 else {
                     row = departureRowHtml.replace('{context}', 'warning').replace('{status}', alertIcon);
+                }
+
+                if (value.platform == null) {
+                    value.platform = '';
                 }
 
                 var departure = row.replace('{destination}', value.destinationName).replace('{due}', value.due).replace('{expected}', value.expected).replace('{platform}', value.platform).replace('{operator}', value.operator);

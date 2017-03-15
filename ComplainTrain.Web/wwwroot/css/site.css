@@ -15,12 +15,12 @@ p
 div#logo-banner
 {
     text-align:center;
-    color: #3892D2;
+    color: #1D504E;
 }
 
 div#logo-banner img#train-image
 {
-    width:50%;
+    width:45%;
 }
 
 div#logo-banner h1
@@ -33,12 +33,12 @@ div#hero
 {
     margin-top:5%;
     text-align:center;
-    color: #3892D2;
+    color: #1D504E;
 }
 
 div#hero input
 {
-    color: #3892D2;
+    color: #1D504E;
 }
 
 div#hero input#station
@@ -53,7 +53,7 @@ div#departures
 }
 
 div#departures a {
-    color:#3892D2;
+    color:#1D504E;
 }
 
 div#departures a#search-again {
@@ -68,12 +68,30 @@ div#departures table#departures-table.table tbody tr.success td:first-child {
     color:green;
 }
 
+div#departures table#departures-table.table tbody tr.danger {
+    cursor:pointer;
+}
 div#departures table#departures-table.table tbody tr.danger td:first-child {
     color:red;
 }
 
+div#departures table#departures-table.table tbody tr.warning {
+    cursor: pointer;
+}
 div#departures table#departures-table.table tbody tr.warning td:first-child {
     color:orange;
+}
+
+@media (max-width: 600px) {
+    div#departures table#departures-table.table thead tr td.status-head,
+    div#departures table#departures-table.table thead tr td.operator-head,
+    div#departures table#departures-table.table tbody tr td.operator-body,
+    div#departures table#departures-table.table tbody tr td.status-body {
+        display:none;
+    }
+    div#logo-banner img#train-image {
+        width:80%;
+    }
 }
 
 @media (max-width: 420px) {
