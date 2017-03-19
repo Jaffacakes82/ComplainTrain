@@ -59,6 +59,14 @@ div#departures a#search-again {
     margin:10px;
 }
 
+div#departures, div#search-again, div#no-trains {
+    display:none;
+}
+
+div#search-again, div#no-trains {
+    text-align: center;
+}
+
 div#departures table#departures-table.table thead {
     font-weight:bold;
 }
@@ -84,6 +92,10 @@ div#departures table#departures-table.table tbody tr.warning {
 }
 div#departures table#departures-table.table tbody tr.warning td:first-child {
     color:orange;
+}
+
+div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-modal .modal-dialog .modal-content .modal-footer {
+    text-align: center;
 }
 
 @media (max-width: 600px) {

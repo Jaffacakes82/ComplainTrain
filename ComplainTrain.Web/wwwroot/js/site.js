@@ -5,20 +5,8 @@ var departureRowHtml = '<tr class="{context}">' +
     '<td class="expected-body">{expected}</td>' +
     '<td>{platform}</td>' +
     '<td class="operator-body">{operator}</td>' +
-    '<td>{complain-button}</td>' +
     '{reason}'
     '</tr>';
-
-var noTrains = '<div class="col-md-1"></div>' +
-    '<div class="col-md-10">' +
-    '<h4>There doesn\'t appear to be any trains running today...</h4>' +
-    '<a id="search-again" href="/" class="btn btn-default">Search again</a>' +
-    '</div>' +
-    '<div class="col-md-1"></div>';
-
-var searchAgainNoMessage = '<div class="row"><div class="col-md-12">' +
-    '<a id="search-again" href="/" class="btn btn-default">Search again</a>' +
-    '</div></div>';
 
 var warningIcon = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>';
 var alertIcon = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
@@ -26,10 +14,8 @@ var allGoodIcon = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>';
 var loadingIcon = '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>';
 
 var reasonInput = '<input type="hidden" value="{reason-string}" />';
-var complainButton = '<button type="button" class="complain-btn btn btn-default"><i class="fa fa-bullhorn" aria-hidden="true"></i></button>';
 
 $(function () {
-    $('#departures').hide();
     $('#station').autocomplete({
         source: function (request, response) {
             $.ajax({
@@ -51,13 +37,14 @@ $(function () {
     });
 
     $('#submit-station').click(submitStation);
-    $(document).on('click touchstart', '.complain-btn', showComplainModal);
+    $(document).on('click touchstart', '#departures-table > tbody > tr.danger, #departures-table > tbody > tr.warning', showComplainModal);
 });
 
 function showComplainModal() {
     var row = $(this);
     $('#complain-modal').modal();
     $('#complain-modal').show();
+    return false;
 }
 
 function submitStation() {
@@ -70,6 +57,9 @@ function submitStation() {
     var url = $(this).data('url');
 
     var stationSearch = $("#station-search");
+    var searchAgain = $("#search-again");
+    var noTrains = $("#no-trains");
+
     $(stationSearch).empty();
     $(stationSearch).append(loadingIcon);
 
@@ -81,7 +71,8 @@ function submitStation() {
 
         if (data == null || data.departureModels == null) {
             $(stationSearch).hide();
-            $(departureSection).clear().append(noTrains);
+            $(noTrains).show();
+            $(searchAgain).show();
         }
         else {
             $(stationSearch).hide();
@@ -92,7 +83,7 @@ function submitStation() {
                 var row = '';
 
                 if (trainOnTime) {
-                    row = departureRowHtml.replace('{context}', 'success').replace('{status}', allGoodIcon).replace('{complain-button}', '');
+                    row = departureRowHtml.replace('{context}', 'success').replace('{status}', allGoodIcon);
                 }
                 else if (cancellationReasonPresent || delayReasonPresent) {
                     if (!cancellationReasonPresent && delayReasonPresent) {
@@ -102,10 +93,10 @@ function submitStation() {
                         reasonInput = reasonInput.replace('{reason-string}', value.cancellationReason);
                     }
                     
-                    row = departureRowHtml.replace('{context}', 'danger row-clickable').replace('{status}', warningIcon).replace('{reason}', reasonInput).replace('{complain-button}', complainButton);
+                    row = departureRowHtml.replace('{context}', 'danger row-clickable').replace('{status}', warningIcon).replace('{reason}', reasonInput);
                 }
                 else {
-                    row = departureRowHtml.replace('{context}', 'warning row-clickable').replace('{status}', alertIcon).replace('{complain-button}', complainButton);
+                    row = departureRowHtml.replace('{context}', 'warning row-clickable').replace('{status}', alertIcon);
                 }
 
                 if (value.platform == null) {
@@ -117,8 +108,8 @@ function submitStation() {
                 $(departuresTable).append(departure);
             });
 
-            $(body).append(searchAgainNoMessage);
             $(departuresSection).show();
+            $(searchAgain).show();
         }
     });
 }
