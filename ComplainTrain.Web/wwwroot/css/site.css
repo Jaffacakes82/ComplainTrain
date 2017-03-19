@@ -46,6 +46,13 @@ div#hero input#station
     width:33%;
 }
 
+div#hero .alert {
+    width:33%;
+    margin: 0 auto;
+    display:none;
+    margin-bottom:20px;
+}
+
 div#departures
 {
     text-align: center;
@@ -67,6 +74,10 @@ div#search-again, div#no-trains {
     text-align: center;
 }
 
+div#search-again {
+    margin-bottom:20px;
+}
+
 div#departures table#departures-table.table thead {
     font-weight:bold;
 }
@@ -83,6 +94,9 @@ div#departures table#departures-table.table tbody tr td span.expected-mob {
 div#departures table#departures-table.table tbody tr.danger {
     cursor:pointer;
 }
+div#departures table#departures-table.table tbody tr.danger:hover td {
+    background-color:#f3c3c3;
+}
 div#departures table#departures-table.table tbody tr.danger td:first-child {
     color:red;
 }
@@ -90,11 +104,14 @@ div#departures table#departures-table.table tbody tr.danger td:first-child {
 div#departures table#departures-table.table tbody tr.warning {
     cursor: pointer;
 }
+div#departures table#departures-table.table tbody tr.warning:hover td {
+    background-color:#f9ce99;
+}
 div#departures table#departures-table.table tbody tr.warning td:first-child {
     color:orange;
 }
 
-div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-modal .modal-dialog .modal-content .modal-footer {
+div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-modal .modal-dialog .modal-content .modal-body, div#complain-modal .modal-dialog .modal-content .modal-footer {
     text-align: center;
 }
 

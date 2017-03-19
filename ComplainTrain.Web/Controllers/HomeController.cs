@@ -55,5 +55,11 @@ namespace ComplainTrain.Web.Controllers
 
             return this.Json(model);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> Complain(ComplaintModel model)
+        {
+            return this.Json("foo");
+        }
     }
 }
