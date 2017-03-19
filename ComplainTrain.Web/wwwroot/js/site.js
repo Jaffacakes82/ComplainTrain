@@ -51,7 +51,7 @@ function showComplainModal() {
     var complaintObj = extractComplaintInformation(this);
     var wording = complaintObj.expected == 'Cancelled' ? 'cancelled' : 'delayed';
 
-    var body = '<p>You selected the ' + complaintObj.due + ' (' + complaintObj.expected + ') from ' + complaintObj.originalSearch + ' operated by ' + complaintObj.operator + '.</p>' +
+    var body = '<p>You selected the ' + complaintObj.due + ' (' + complaintObj.expected + ') from ' + complaintObj.originalSearch + ' to ' + complaintObj.destination + ' operated by ' + complaintObj.operator + '.</p>' +
     '<p>' + complaintObj.delayReason.replace('{wording}', wording) + '</p>' +
     '<p>Think this is a good enough reason to complain?</p>';
 

@@ -3,71 +3,65 @@
 }
 
 .navbar-brand {
-    padding-top:5px;
+    padding-top: 5px;
 }
 
-p
-{
+p {
     font-family: 'Open Sans', sans-serif;
 }
 
+
 /* Section Specific Styling */
-div#logo-banner
-{
-    text-align:center;
+
+div#logo-banner {
+    text-align: center;
     color: #1D504E;
 }
 
-div#logo-banner img#train-image
-{
-    width:45%;
+div#logo-banner img#train-image {
+    width: 45%;
 }
 
-div#logo-banner h1
-{
-    margin-top:0px;
+div#logo-banner h1 {
+    margin-top: 0px;
     font-family: 'Faster One', cursive;
 }
 
-div#hero
-{
-    text-align:center;
+div#hero {
+    text-align: center;
     color: #1D504E;
 }
 
-div#hero input
-{
+div#hero input {
     color: #1D504E;
 }
 
-div#hero input#station
-{
+div#hero input#station {
     margin: 0 auto;
-    width:33%;
+    width: 33%;
 }
 
 div#hero .alert {
-    width:33%;
+    width: 33%;
     margin: 0 auto;
-    display:none;
-    margin-bottom:20px;
+    display: none;
+    margin-bottom: 20px;
 }
 
-div#departures
-{
+div#departures {
     text-align: center;
 }
 
 div#departures a {
-    color:#1D504E;
+    color: #1D504E;
 }
 
 div#departures a#search-again {
-    margin:10px;
+    margin: 10px;
 }
 
 div#departures, div#search-again, div#no-trains {
-    display:none;
+    display: none;
 }
 
 div#search-again, div#no-trains {
@@ -75,40 +69,44 @@ div#search-again, div#no-trains {
 }
 
 div#search-again {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 div#departures table#departures-table.table thead {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 div#departures table#departures-table.table tbody tr.success td:first-child {
-    color:green;
+    color: green;
 }
 
 div#departures table#departures-table.table tbody tr td span.expected-mob {
-    font-size:0.7em;
-    display:none;
+    font-size: 0.7em;
+    display: none;
 }
 
 div#departures table#departures-table.table tbody tr.danger {
-    cursor:pointer;
+    cursor: pointer;
 }
+
 div#departures table#departures-table.table tbody tr.danger:hover td {
-    background-color:#f3c3c3;
+    background-color: #f3c3c3;
 }
+
 div#departures table#departures-table.table tbody tr.danger td:first-child {
-    color:red;
+    color: red;
 }
 
 div#departures table#departures-table.table tbody tr.warning {
     cursor: pointer;
 }
+
 div#departures table#departures-table.table tbody tr.warning:hover td {
-    background-color:#f9ce99;
+    background-color: #f9ce99;
 }
+
 div#departures table#departures-table.table tbody tr.warning td:first-child {
-    color:orange;
+    color: orange;
 }
 
 div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-modal .modal-dialog .modal-content .modal-body, div#complain-modal .modal-dialog .modal-content .modal-footer {
@@ -117,43 +115,40 @@ div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-moda
 
 @media (max-width: 600px) {
     div#departures table#departures-table.table thead {
-        font-size:0.7em;
+        font-size: 0.7em;
     }
     div#departures table#departures-table.table tbody {
-        font-size:0.8em;
+        font-size: 0.8em;
     }
-
-    div#departures table#departures-table.table tbody tr td:nth-child(2) { 
-        width:120px;
-        white-space:inherit;
+    div#departures table#departures-table.table tbody tr td:nth-child(2) {
+        width: 120px;
+        white-space: inherit;
     }
     div#departures table#departures-table.table tbody tr td span.expected-mob {
-        display:block;
+        display: block;
     }
-
-    div#departures table#departures-table.table thead tr td.status-head,
-    div#departures table#departures-table.table thead tr td.operator-head,
-    div#departures table#departures-table.table tbody tr td.operator-body,
-    div#departures table#departures-table.table thead tr td.expected-head,
-    div#departures table#departures-table.table tbody tr td.expected-body,
-    div#departures table#departures-table.table tbody tr td.status-body {
-        display:none;
+    div#departures table#departures-table.table thead tr td.status-head, div#departures table#departures-table.table thead tr td.operator-head, div#departures table#departures-table.table tbody tr td.operator-body, div#departures table#departures-table.table thead tr td.expected-head, div#departures table#departures-table.table tbody tr td.expected-body, div#departures table#departures-table.table tbody tr td.status-body {
+        display: none;
     }
-    div#logo-banner img#train-image {
-        width:80%;
+    div#logo-banner img#train-image, div#hero input#station, div#hero .alert {
+        width: 80%;
     }
 }
 
 @media (max-width: 420px) {
     div#hero div#station-search h3 {
-        font-size:20px;
+        font-size: 20px;
     }
-    div#hero input#station
-    {
+    div#hero input#station {
         margin: 0 auto;
-        width:80%;
+        width: 90%;
+    }
+    div#hero .alert {
+        margin: 0 auto;
+        width:90%;
+        margin-bottom:20px;
     }
     div#logo-banner img#train-image {
-        width:100%;
+        width: 100%;
     }
 }
