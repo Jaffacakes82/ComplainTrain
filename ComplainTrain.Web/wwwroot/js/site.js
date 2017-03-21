@@ -15,6 +15,7 @@ var loadingIcon = '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-
 
 var reasonInput = '<input class="delay-reason" type="hidden" value="{reason-string}" />';
 var originalSearch = '';
+var complaintToPost = {};
 
 $(function () {
     $('#station').autocomplete({
@@ -44,7 +45,10 @@ $(function () {
 });
 
 function postComplaint() {
-
+    var url = $(this).data('url');
+    $.post(url, complaintToPost, function (data) {
+        console.log(data);
+    });
 }
 
 function showComplainModal() {
@@ -61,6 +65,7 @@ function showComplainModal() {
     $(modal).modal();
     $(modal).show();
 
+    complaintToPost = complaintObj;
     return false;
 }
 

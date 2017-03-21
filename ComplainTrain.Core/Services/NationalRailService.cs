@@ -24,7 +24,8 @@ namespace ComplainTrain.Core.Services
         {
             string requestString = string.Format(
                 SOAPWrapper.requestString,
-                Environment.GetEnvironmentVariable("ACCESS_TOKEN"),
+                "4431f0f7-3add-4a27-bd96-827b3c85959b",
+                //Environment.GetEnvironmentVariable("ACCESS_TOKEN"),
                 pageSize,
                 stationCode,
                 stationFilter,
