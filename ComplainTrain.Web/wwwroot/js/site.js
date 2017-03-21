@@ -53,7 +53,7 @@ function showComplainModal() {
 
     var body = '<p>You selected the ' + complaintObj.due + ' (' + complaintObj.expected + ') from ' + complaintObj.originalSearch + ' to ' + complaintObj.destination + ' operated by ' + complaintObj.operator + '.</p>' +
     '<p>' + complaintObj.delayReason.replace('{wording}', wording) + '</p>' +
-    '<p>Think this is a good enough reason to complain?</p>';
+    '<p>Still want to complain?</p>';
 
     var modal = $('#complain-modal');
     $(modal).find('.modal-body').empty();
@@ -80,7 +80,7 @@ function extractComplaintInformation(row) {
     complaintInfo.expected = expected;
 
     if ($(row).has('input').length > 0) {
-        delayReason = "Apparently this train is {wording} because '<strong>" + $(row).find('input').val() + "'</strong>."
+        delayReason = "<strong>" + $(row).find('input').val() + "</strong>."
     }
     else {
         delayReason = "It doesn't look like there's a formal reason why this train is delayed."
