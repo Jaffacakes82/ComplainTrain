@@ -28,7 +28,7 @@ namespace ComplainTrain.Core.Services
             string oAuthNonce = Convert.ToBase64String(randBytes);
             string oAuthTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
 
-            string signatureBaseToEncode = string.Format(SIGNATURE_BASE, TWITTER_API, consumerKey, oAuthNonce, OAUTH_SIG_METHOD, oAuthTimestamp, accessToken, OAUTH_VERSION, message)
+            string signatureBaseToEncode = string.Format(SIGNATURE_BASE, TWITTER_API, consumerKey, oAuthNonce, OAUTH_SIG_METHOD, oAuthTimestamp, accessToken, OAUTH_VERSION, message);
         }
     }
 }
