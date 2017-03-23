@@ -94,7 +94,8 @@
     server: https://complaintrain.scm.azurewebsites.net:443/msdeploy.axd?site=complaintrain
     website: complaintrain
     username: $complaintrain
-    password: $env:deploy_password
+    password: 
+      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
     artifact: ComplainTrain
     aspnet_core: true
     aspnet_core_force_restart: true
