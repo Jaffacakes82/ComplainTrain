@@ -64,6 +64,29 @@
   artifacts:
   - path: /publish
     name: ComplainTrain
+  before_deploy:
+  - ps: >-
+    $username = "`$complaintrain"
+    $password = $env:sitepwd
+    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
+    $Headers = @{
+      'Authorization' = ('Basic {0}' -f $base64AuthInfo)
+      'If-Match'      = '*'
+    }
+    $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
+    $filePath = "app_offline_tmp.htm"
+    Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method PUT -InFile $filePath -ContentType "multipart/form-data"
+  after_deploy:
+  - ps: >-
+    $username = "`$complaintrain"
+    $password = $env:sitepwd
+    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
+    $Headers = @{
+      'Authorization' = ('Basic {0}' -f $base64AuthInfo)
+      'If-Match'      = '*'
+    }
+    $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
+    Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method DELETE  
   deploy:
   - provider: WebDeploy
     server: https://complaintrain.scm.azurewebsites.net:443/msdeploy.axd?site=complaintrain
