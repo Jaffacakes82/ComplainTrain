@@ -68,7 +68,7 @@
     name: ComplainTrain
   before_deploy:
   - ps: >-
-    $username = "`$complaintrain"
+      $username = "`$complaintrain"
       $password = $env:deploy_password
       $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
       $Headers = @{
@@ -80,7 +80,7 @@
       Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method PUT -InFile $filePath -ContentType "multipart/form-data"
   after_deploy:
   - ps: >-
-    $username = "`$complaintrain"
+      $username = "`$complaintrain"
       $password = $env:deploy_password
       $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
       $Headers = @{
