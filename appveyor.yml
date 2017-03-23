@@ -44,6 +44,8 @@
   environment:
     BUILD_DIR: C:\projects\ComplainTrain
     ASPNETCORE_ENVIRONMENT: Production
+    deploy_password:
+      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
   install:
   - cmd: npm install -g bower
   build_script:
@@ -67,36 +69,34 @@
   before_deploy:
   - ps: >-
     $username = "`$complaintrain"
-    $password = $env:sitepwd
-    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
-    $Headers = @{
-      'Authorization' = ('Basic {0}' -f $base64AuthInfo)
-      'If-Match'      = '*'
-    }
-    $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
-    $filePath = "app_offline_tmp.htm"
-    Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method PUT -InFile $filePath -ContentType "multipart/form-data"
+      $password = $env:deploy_password
+      $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
+      $Headers = @{
+        'Authorization' = ('Basic {0}' -f $base64AuthInfo)
+        'If-Match'      = '*'
+      }
+      $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
+      $filePath = "app_offline_tmp.htm"
+      Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method PUT -InFile $filePath -ContentType "multipart/form-data"
   after_deploy:
   - ps: >-
     $username = "`$complaintrain"
-    $password = $env:sitepwd
-    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
-    $Headers = @{
-      'Authorization' = ('Basic {0}' -f $base64AuthInfo)
-      'If-Match'      = '*'
-    }
-    $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
-    Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method DELETE  
+      $password = $env:deploy_password
+      $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
+      $Headers = @{
+        'Authorization' = ('Basic {0}' -f $base64AuthInfo)
+        'If-Match'      = '*'
+      }
+      $apiUrl = "https://complaintrain.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm"
+      Invoke-RestMethod -Uri $apiUrl -Headers $Headers -Method DELETE  
   deploy:
   - provider: WebDeploy
     server: https://complaintrain.scm.azurewebsites.net:443/msdeploy.axd?site=complaintrain
     website: complaintrain
     username: $complaintrain
-    password:
-      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
+    password: $env:deploy_password
     artifact: ComplainTrain
     aspnet_core: true
-    remove_files: true
     aspnet_core_force_restart: true
     on:
       branch: master
