@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ComplainTrain.Core.Classes
+namespace ComplainTrain.Core.Helpers
 {
     public static class TwitterLookup
     {

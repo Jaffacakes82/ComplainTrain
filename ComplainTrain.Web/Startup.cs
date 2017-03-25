@@ -1,6 +1,8 @@
+using ComplainTrain.Core.Helpers;
 using ComplainTrain.Core.Interfaces;
 using ComplainTrain.Core.Services;
 using ComplainTrain.Core.Settings;
+using ComplainTrain.Core.Strategies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,9 @@ namespace ComplainTrain.Web
             services.AddTransient<INationalRailService, NationalRailService>();
             services.AddTransient<IHttpService, HttpService>();
             services.AddTransient<ISerializer, XmlSerializationService>();
+            services.AddTransient<ICryptoStrategy, CryptoStrategy>();
+            services.AddTransient<IOAuthHelper, OAuthHelper>();
+            services.AddTransient<ITwitterService, TwitterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

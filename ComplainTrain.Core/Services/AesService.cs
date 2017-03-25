@@ -56,8 +56,8 @@ namespace ComplainTrain.Core.Services
         {
             // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
             // so that the same Salt and IV values can be used when decrypting.  
-            var saltStringBytes = Generate256BitsOfRandomEntropy();
-            var ivStringBytes = Generate256BitsOfRandomEntropy();
+            var saltStringBytes = Generate128BitsOfRandomEntropy();
+            var ivStringBytes = Generate128BitsOfRandomEntropy();
             var plainTextBytes = Encoding.UTF8.GetBytes(toEncrypt);
             using (var password = new Rfc2898DeriveBytes(key, saltStringBytes, derivationIterations))
             {
@@ -87,9 +87,9 @@ namespace ComplainTrain.Core.Services
             }
         }
 
-        private static byte[] Generate256BitsOfRandomEntropy()
+        private static byte[] Generate128BitsOfRandomEntropy()
         {
-            var randomBytes = new byte[16]; // 32 Bytes will give us 256 bits.
+            var randomBytes = new byte[16]; // 32 Bytes will give us 128 bits.
             using (var randomNumberGen = RandomNumberGenerator.Create())
             {
                 // Fill the array with cryptographically secure random bytes.

@@ -24,15 +24,14 @@ namespace ComplainTrain.Core.Services
         {
             string requestString = string.Format(
                 SOAPWrapper.requestString,
-                "4431f0f7-3add-4a27-bd96-827b3c85959b",
-                //Environment.GetEnvironmentVariable("ACCESS_TOKEN"),
+                Environment.GetEnvironmentVariable("ACCESS_TOKEN"),
                 pageSize,
                 stationCode,
                 stationFilter,
                 timeOffset,
                 timeWindow);
 
-            string departuresAsString = await this.httpService.Post(this.options.SOAPEndpoint, "text/xml", requestString);
+            string departuresAsString = await this.httpService.Post(this.options.SOAPEndpoint, "text/xml", requestString, null);
             var soapWrapper = new SOAPWrapper();
             soapWrapper.SoapEnvelope = this.serializer.Deserialize<Envelope>(departuresAsString);
             return soapWrapper.Wash();

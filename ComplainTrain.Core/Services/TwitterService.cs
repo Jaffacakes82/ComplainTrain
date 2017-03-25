@@ -1,35 +1,35 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using ComplainTrain.Core.Interfaces;
+using ComplainTrain.Core.Settings;
+using Microsoft.Extensions.Options;
 
 namespace ComplainTrain.Core.Services
 {
-    public class TwitterService : ITwitterService
+    public sealed class TwitterService : ITwitterService
     {
-        private const string TWITTER_API = "https://api.twitter.com/1.1/statuses/update.json";
-        private const string SIGNATURE_BASE = "POST&{0}&include_entities=true&oauth_consumer_key={1}&oauth_nonce={2}&oauth_signature_method={3}&oauth_timestamp={4}&oauth_token={5}&oauth_version={6}&status={7}";
-        private const string OAUTH_SIG_METHOD = "HMAC_SHA1";
-        private const string OAUTH_VERSION = "1.0";
-
+        private readonly IOAuthHelper authHelper;
+        private readonly IHttpService httpService;
+        private readonly WebSettings options;
+        public TwitterService(IOAuthHelper authHelper, IHttpService httpService, IOptions<WebSettings> options)
+        {
+            this.authHelper = authHelper;
+            this.httpService = httpService;
+            this.options = options.Value;
+        }
         public void Tweet(string message)
         {
-            throw new NotImplementedException();
-        }
+            string status = string.Format("status={0}", WebUtility.UrlEncode(message));
+            KeyValuePair<string, string> header = this.authHelper.GetOAuthHeader(message);
+            IDictionary<string, IEnumerable<string>> headersDict = new Dictionary<string, IEnumerable<string>>();
+            headersDict.Add(header.Key, new List<string> { header.Value });
 
-        private string GenerateOAuthSignature(string message)
-        {
-            string consumerKey = Environment.GetEnvironmentVariable("CONSUMER_KEY");
-            string consumerSecret = Environment.GetEnvironmentVariable("CONSUMER_SECRET");
-            string accessToken = Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN");
-            string accessTokenSecret = Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN_SECRET");
-
-            byte[] randBytes = new byte[32];
-            new Random().NextBytes(randBytes);
-            string oAuthNonce = Convert.ToBase64String(randBytes);
-            string oAuthTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
-
-            string signatureBaseToEncode = string.Format(SIGNATURE_BASE, TWITTER_API, consumerKey, oAuthNonce, OAUTH_SIG_METHOD, oAuthTimestamp, accessToken, OAUTH_VERSION, message);
-			return string.Empty;
+            this.httpService.Post(
+                this.options.TwitterUpdateEndpoint, 
+                "application/x-www-form-urlencoded", 
+                status, 
+                headersDict);
         }
     }
 }

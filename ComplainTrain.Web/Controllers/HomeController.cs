@@ -7,6 +7,7 @@ using System.Linq;
 using ComplainTrain.Core.Interfaces;
 using ComplainTrain.Core.Settings;
 using Microsoft.Extensions.Options;
+using ComplainTrain.Core.Helpers;
 
 namespace ComplainTrain.Web.Controllers
 {
@@ -14,9 +15,10 @@ namespace ComplainTrain.Web.Controllers
     {
         private readonly INationalRailService trainService;
         private readonly WebSettings options;
-
-        public HomeController(INationalRailService trainService, IOptions<WebSettings> options)
+        private readonly ITwitterService twitterService;
+        public HomeController(INationalRailService trainService, IOptions<WebSettings> options, ITwitterService twitterService)
         {
+            this.twitterService = twitterService;   
             this.trainService = trainService;
             this.options = options.Value;
         }
@@ -34,7 +36,7 @@ namespace ComplainTrain.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult SearchStations(string term)
+        public async Task<JsonResult> SearchStations(string term)
         {
             IList<KeyValuePair<string, string>> matches = StationList.Stations.Where(
                 station => station.Value.ToLowerInvariant().Contains(term.ToLowerInvariant())
@@ -59,6 +61,7 @@ namespace ComplainTrain.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Complain(ComplaintModel model)
         {
+            this.twitterService.Tweet("Testing");
             return this.Json("foo");
         }
     }

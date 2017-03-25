@@ -21,7 +21,8 @@ namespace ComplainTrain.Web
                 .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://192.168.0.12:5000")
+                //.UseUrls("http://192.168.0.12:5000")
+                .UseUrls("http://localhost:5000")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
