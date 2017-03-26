@@ -18,6 +18,8 @@ namespace ComplainTrain.Core.Services
             this.httpService = httpService;
             this.options = options.Value;
         }
+
+        //Testing file lock
         public void Tweet(string message)
         {
             string status = string.Format("status={0}", WebUtility.UrlEncode(message));
