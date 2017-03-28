@@ -6,6 +6,6 @@ namespace ComplainTrain.Core.Interfaces
 {
     public interface INationalRailService
     {
-        Task<IList<Departure>> GetDepartureBoard(string pageSize, string stationCode, string stationFilter, string timeOffset, string timeWindow);
+        IList<Departure> GetDepartureBoard(string pageSize, string stationCode, string stationFilter, string timeOffset, string timeWindow);
     }
 }

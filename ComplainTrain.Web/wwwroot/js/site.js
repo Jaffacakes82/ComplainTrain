@@ -47,7 +47,17 @@ $(function () {
 function postComplaint() {
     var url = $(this).data('url');
     $.post(url, complaintToPost, function (data) {
-        console.log(data);
+        var modal = $('#complain-modal');
+
+        var successMessage = '<i class="fa fa-smile-o fa-5x smiley" aria-hidden="true"></i><br /><br />' + 
+            '<strong><p style="font-size:1.3em;">That\'s it! We\'ve complained to ' + data + ' on your behalf.</p></strong><br />' +
+            '<p style="font-size:0.9em;">For the amount we pay, travelling on the UK\'s rail network should feel less like a chore.' +
+            ' We\'re only in the early stages of development, but our vision is to arm every commuter with a means to be heard.<p>'
+
+        $(modal).find('.modal-body').empty();
+        $(modal).find('.modal-body').append(successMessage);
+        $(modal).find('.modal-footer').empty();
+        $(modal).find('.modal-footer').append('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
     });
 }
 
@@ -62,6 +72,8 @@ function showComplainModal() {
     var modal = $('#complain-modal');
     $(modal).find('.modal-body').empty();
     $(modal).find('.modal-body').append(body);
+    $(modal).find('.modal-footer').empty();
+    $(modal).find('.modal-footer').append('<button id="complain-btn" type="button" class="btn btn-danger" data-url="/Home/Complain">Shout it from the rooftops!&nbsp;&nbsp;<i class="fa fa-bullhorn" aria-hidden="true"></i></button>');
     $(modal).modal();
     $(modal).show();
 

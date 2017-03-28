@@ -14,13 +14,15 @@ namespace ComplainTrain.Core.Services
         private readonly IHttpService httpService;
         private readonly ISerializer serializer;
         private readonly WebSettings options;
+        
         public NationalRailService(IHttpService httpService, ISerializer serializer, IOptions<WebSettings> options)
         {
             this.httpService = httpService;
             this.serializer = serializer;
             this.options = options.Value;
         }
-        public async Task<IList<Departure>> GetDepartureBoard(string pageSize, string stationCode, string stationFilter, string timeOffset, string timeWindow)
+
+        public IList<Departure> GetDepartureBoard(string pageSize, string stationCode, string stationFilter, string timeOffset, string timeWindow)
         {
             string requestString = string.Format(
                 SOAPWrapper.requestString,
@@ -31,7 +33,7 @@ namespace ComplainTrain.Core.Services
                 timeOffset,
                 timeWindow);
 
-            string departuresAsString = await this.httpService.Post(this.options.SOAPEndpoint, "text/xml", requestString, null);
+            string departuresAsString = this.httpService.Post(this.options.SOAPEndpoint, "text/xml", requestString, null);
             var soapWrapper = new SOAPWrapper();
             soapWrapper.SoapEnvelope = this.serializer.Deserialize<Envelope>(departuresAsString);
             return soapWrapper.Wash();

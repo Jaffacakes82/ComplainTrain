@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ComplainTrain.Core.Services
             throw new NotImplementedException();
         }
 
-        public async Task<string> Post(string url, string contentType, string body, IDictionary<string, IEnumerable<string>> headers)
+        public string Post(string url, string contentType, string body, IDictionary<string, IEnumerable<string>> headers)
         {
             using (var httpClient = new HttpClient())
             {
@@ -26,9 +27,9 @@ namespace ComplainTrain.Core.Services
                         httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
                 }
-
-                HttpResponseMessage response = await httpClient.PostAsync(url, new StringContent(body, Encoding.UTF8, contentType));
-                string responseBody = await response.Content.ReadAsStringAsync();
+                
+                HttpResponseMessage response = httpClient.PostAsync(url, new StringContent(body, Encoding.UTF8, contentType)).Result;
+                string responseBody = response.Content.ReadAsStringAsync().Result;
                 return responseBody;
             }
         }

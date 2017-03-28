@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using ComplainTrain.Core.Interfaces;
 using ComplainTrain.Core.Settings;
 using Microsoft.Extensions.Options;
@@ -12,6 +13,7 @@ namespace ComplainTrain.Core.Services
         private readonly IOAuthHelper authHelper;
         private readonly IHttpService httpService;
         private readonly WebSettings options;
+        
         public TwitterService(IOAuthHelper authHelper, IHttpService httpService, IOptions<WebSettings> options)
         {
             this.authHelper = authHelper;
@@ -19,17 +21,16 @@ namespace ComplainTrain.Core.Services
             this.options = options.Value;
         }
 
-        //Testing file lock
         public void Tweet(string message)
         {
-            string status = string.Format("status={0}", WebUtility.UrlEncode(message));
+            string status = "status=" + Uri.EscapeDataString(message);
             KeyValuePair<string, string> header = this.authHelper.GetOAuthHeader(message);
             IDictionary<string, IEnumerable<string>> headersDict = new Dictionary<string, IEnumerable<string>>();
             headersDict.Add(header.Key, new List<string> { header.Value });
 
-            this.httpService.Post(
-                this.options.TwitterUpdateEndpoint, 
-                "application/x-www-form-urlencoded", 
+            var response = this.httpService.Post(
+                this.options.TwitterUpdateEndpoint,
+                "application/x-www-form-urlencoded",
                 status, 
                 headersDict);
         }

@@ -15,10 +15,10 @@ namespace ComplainTrain.Core.Helpers
 
         public OAuthHelper(ICryptoStrategy cryptoStrategy)
         {
-            this.ConsumerKey = /*Environment.GetEnvironmentVariable("CONSUMER_KEY")*/"NamCSGenGBdik5Pybozos3oWn";
-            this.ConsumerSecret = /*Environment.GetEnvironmentVariable("CONSUMER_SECRET")*/"6x1oohBA7KYnwNOHkuhhrJlicM8V7eZLK5ZY8S2kErPvlxv6t1";
-            this.ApiAccessToken = /*Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN")*/"2219490384-SVPGozzr3pkDFUWiFvHfdummDMU7A04x69jMFME";
-            this.ApiAccessTokenSecret = /*Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN_SECRET")*/"4cOZQmXTO4elrf2RmPTCvGzWHvETPv8IjCUR0O4FrwSke";
+            this.ConsumerKey = Environment.GetEnvironmentVariable("CONSUMER_KEY");
+            this.ConsumerSecret = Environment.GetEnvironmentVariable("CONSUMER_SECRET");
+            this.ApiAccessToken = Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN");
+            this.ApiAccessTokenSecret = Environment.GetEnvironmentVariable("TWITTER_ACCESS_TOKEN_SECRET");
 
             this.cryptoService = cryptoStrategy.CreateCrypto(typeof(HmacSha1Service));
         }
@@ -83,7 +83,7 @@ namespace ComplainTrain.Core.Helpers
                 WebUtility.UrlEncode(timestamp),
                 WebUtility.UrlEncode(this.ApiAccessToken),
                 WebUtility.UrlEncode(OAUTH_VERSION),
-                WebUtility.UrlEncode(message));
+                Uri.EscapeDataString(message));
 
             string signatureBaseString =
                 string.Format(

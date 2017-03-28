@@ -8,11 +8,13 @@ using ComplainTrain.Core.Interfaces;
 using ComplainTrain.Core.Settings;
 using Microsoft.Extensions.Options;
 using ComplainTrain.Core.Helpers;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace ComplainTrain.Web.Controllers
 {
     public sealed class HomeController : Controller
     {
+        private readonly IList<string> hashtags = new List<string> { " #delays", " #crapservice", " #serviceoverprofit", " #selfish"};
         private readonly INationalRailService trainService;
         private readonly WebSettings options;
         private readonly ITwitterService twitterService;
@@ -36,19 +38,20 @@ namespace ComplainTrain.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> SearchStations(string term)
+        public JsonResult SearchStations(string term)
         {
             IList<KeyValuePair<string, string>> matches = StationList.Stations.Where(
                 station => station.Value.ToLowerInvariant().Contains(term.ToLowerInvariant())
                 ).ToList();
+
             return this.Json(matches);
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetDepartures(string selectedStation)
+        public JsonResult GetDepartures(string selectedStation)
         {
             DepartureListModel model = new DepartureListModel();
-            IList<Departure> departures = await this.trainService.GetDepartureBoard("10", selectedStation, "to", "0", "60");
+            IList<Departure> departures = this.trainService.GetDepartureBoard("10", selectedStation, "to", "0", "60");
 
             if (departures.Count > 0)
             {
@@ -59,10 +62,34 @@ namespace ComplainTrain.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Complain(ComplaintModel model)
+        public JsonResult Complain(ComplaintModel model)
         {
-            this.twitterService.Tweet("Testing");
-            return this.Json("foo");
+            var twitterHandle = TwitterLookup.TwitterHandles.FirstOrDefault(tweet => tweet.Key == model.Operator).Value;
+            var delayedOrCancelled = model.Expected == "Cancelled" ? "CANCELLED" : "DELAYED";
+            string message = string.Format(
+                "#complaint received for {0}. The {1} from {2} to {3} is {4}. SORT IT OUT! @transportgovuk",
+                twitterHandle,
+                model.Due,
+                model.OriginalSearch,
+                model.Destination,
+                delayedOrCancelled
+            );
+
+            while (message.Length < 140) 
+            {
+                int availableSpace = 140 - message.Length;
+                string selectedHashtag = hashtags.Where(s => s.Length <= availableSpace && !message.Contains(s)).FirstOrDefault();
+
+                if (string.IsNullOrWhiteSpace(selectedHashtag))
+                {
+                    break;
+                }
+
+                message += selectedHashtag;
+            }
+            
+            this.twitterService.Tweet(message);
+            return this.Json(model.Operator);
         }
     }
 }

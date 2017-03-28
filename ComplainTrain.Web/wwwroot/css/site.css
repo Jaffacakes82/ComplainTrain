@@ -113,6 +113,10 @@ div#complain-modal .modal-dialog .modal-content .modal-header, div#complain-moda
     text-align: center;
 }
 
+div#complain-modal .modal-content .modal-body .smiley {
+    color:green;
+}
+
 @media (max-width: 600px) {
     div#departures table#departures-table.table thead {
         font-size: 0.7em;
