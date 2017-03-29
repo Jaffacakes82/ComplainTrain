@@ -45,7 +45,7 @@
     BUILD_DIR: C:\projects\ComplainTrain
     ASPNETCORE_ENVIRONMENT: Production
     deploy_password:
-      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
+      secure: WSBnLJJlFwbZU74DH3AReCbimBgI2MHgrWbHoDEmorMdC5aJyvS6CHSy6YA+7dVcHgWSnca017zH6nbHCzHMxA==
   install:
   - cmd: npm install -g bower
   build_script:
@@ -72,7 +72,7 @@
     website: complaintrain
     username: $complaintrain
     password: 
-      secure: yB6Yy+WxcO7nlTL3CsZSBO+PlDKZlo7RNN+fDk7NfrYuKx06WeCaCjCIKDh9DJeJzrf6tG31Q7VIhPE38GfDQw==
+      secure: WSBnLJJlFwbZU74DH3AReCbimBgI2MHgrWbHoDEmorMdC5aJyvS6CHSy6YA+7dVcHgWSnca017zH6nbHCzHMxA==
     artifact: ComplainTrain
     app_offline: true
     aspnet_core: true
